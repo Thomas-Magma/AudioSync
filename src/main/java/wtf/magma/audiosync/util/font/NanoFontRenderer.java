@@ -1,12 +1,10 @@
 package wtf.magma.audiosync.util.font;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import org.lwjgl.system.MemoryUtil;
-import wtf.arsenic.utils.MinecraftInstance;
-import wtf.arsenic.utils.nanovg.NanoRenderUtil;
-import wtf.arsenic.utils.render.ResourceUtil;
+import wtf.magma.audiosync.util.ResourceUtil;
+import wtf.magma.audiosync.util.nanovg.NanoUtil;
 
 import java.awt.*;
 import java.io.IOException;
@@ -14,14 +12,13 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import static org.lwjgl.nanovg.NanoVG.*;
-import static wtf.arsenic.utils.nanovg.NanoLoader.context;
+import static wtf.magma.audiosync.util.nanovg.NanoVGHelper.context;
 
 
-public class NanoFontRenderer implements MinecraftInstance {
+public class NanoFontRenderer {
     @Getter
     private final String name;
     private int font;
-    private final NanoFontRenderer boldRenderer;
     @Setter
     private float size;
 
@@ -37,28 +34,6 @@ public class NanoFontRenderer implements MinecraftInstance {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        boldRenderer = new NanoFontRenderer(name, fileName, font);
-    }
-
-    private NanoFontRenderer(String name, String fileName, int plainFont) {
-        this.name = name + "-bold";
-        try (InputStream inputStream = ResourceUtil.getResourceAsStream(fileName + "-bold.ttf")) {
-            byte[] data = inputStream.readAllBytes();
-            ByteBuffer buffer = MemoryUtil.memAlloc(data.length);
-            buffer.put(data).flip();
-
-            font = nvgCreateFontMem(context, this.name, buffer, false);
-            size = 16;
-        } catch (NullPointerException ee) {
-            font = plainFont;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        boldRenderer = this;
-    }
-
-    public NanoFontRenderer bold() {
-        return boldRenderer;
     }
 
     public float getHeight(float size) {
@@ -76,11 +51,6 @@ public class NanoFontRenderer implements MinecraftInstance {
         float[] bounds = new float[4];
         nvgTextBounds(context, 0, 0, text, bounds);
         return (bounds[3] - bounds[1]) / 2f;
-    }
-
-    // Plain
-    public void drawString(String text, float x, float y, float size, int align, Color color) {
-        renderPlainString(text, x, y, size, align, color);
     }
 
     public void drawString(String text, float x, float y, int align, Color color) {
@@ -121,9 +91,11 @@ public class NanoFontRenderer implements MinecraftInstance {
         int centeredX = Math.round(x - halfWidth);
         drawString(text, centeredX, y, color);
     }
+
     public void drawCenteredString(final String text, final float x, final float y,int size, final Color color) {
         drawString(text, (x - getStringWidth(text) / 2f), y, size, color);
     }
+
     public void drawString(String text, float x, float y, Color color) {
         renderPlainString(text, x, y, size, NVG_ALIGN_LEFT | NVG_ALIGN_TOP, color);
     }
@@ -146,6 +118,7 @@ public class NanoFontRenderer implements MinecraftInstance {
         renderPlainString(text, x + 0.5f, y + 0.5f, size, NVG_ALIGN_LEFT | NVG_ALIGN_TOP, new Color(rgb));
         drawGlowString(text, x, y, color);
     }
+
     public void drawGlowString(String text, float x, float y, float radius,float size, Color color) {
         renderGlowString(text, x, y, size, radius, NVG_ALIGN_LEFT | NVG_ALIGN_TOP, color, color);
     }
@@ -174,7 +147,7 @@ public class NanoFontRenderer implements MinecraftInstance {
         nvgBeginPath(context);
         nvgTextAlign(context, align);
 
-        NanoRenderUtil.fillColor(color);
+        NanoUtil.fillColor(color);
 
         renderString(text, x, y + 1f, size);
 
@@ -185,11 +158,11 @@ public class NanoFontRenderer implements MinecraftInstance {
         nvgBeginPath(context);
         nvgTextAlign(context, align);
 
-        NanoRenderUtil.fillColor(glowColor);
+        NanoUtil.fillColor(glowColor);
         nvgFontBlur(context, radius);
         renderString(text, x, y + 1f, size);
 
-        NanoRenderUtil.fillColor(textColor);
+        NanoUtil.fillColor(textColor);
         nvgFontBlur(context, 0f);
         renderString(text, x, y + 1f, size);
 
@@ -203,19 +176,10 @@ public class NanoFontRenderer implements MinecraftInstance {
         nvgText(context, x, y, text);
     }
 
-    /**
-     * @param text 文本
-     * @return 文本长度
-     */
     public float getStringWidth(String text) {
         return getStringWidth(text, size);
     }
 
-    /**
-     * @param text 文本
-     * @param size 字体大小
-     * @return 文本长度
-     */
     public float getStringWidth(String text, float size) {
         if (text == null) return 0f;
         nvgFontFaceId(context, font);

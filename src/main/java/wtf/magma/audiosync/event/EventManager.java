@@ -1,12 +1,14 @@
-package wtf.arsenic.event;
+package wtf.magma.audiosync.event;
 
-import wtf.arsenic.event.annotations.EventPriority;
-import wtf.arsenic.event.annotations.EventTarget;
-import wtf.arsenic.event.impl.Event;
+import wtf.magma.audiosync.event.annotations.EventPriority;
+import wtf.magma.audiosync.event.impl.Event;
+import wtf.magma.audiosync.event.annotations.EventTarget;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 

@@ -1,4 +1,4 @@
-package com.heypixel.heypixelmod.obsoverlay.utils;
+package wtf.magma.audiosync.util.gl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,6 +8,9 @@ import static org.lwjgl.opengl.GL32.*;
 import static org.lwjgl.opengl.GL33.GL_SAMPLER_BINDING;
 import static org.lwjgl.opengl.GL33.glBindSampler;
 
+/**
+ * 备份GL状态
+ */
 public final class GlState {
 
     private static final int[] allCaps = new int[]{
@@ -73,8 +76,9 @@ public final class GlState {
     private final static int[] lastViewport = new int[4];
     private final static int[] lastScissorBox = new int[4];
 
-    private GlState() {
-    }
+    /**
+     * 备份原先的GL状态
+     */
 
     public static void backup() {
         lastActiveTexture = glGetInteger(GL_ACTIVE_TEXTURE);
@@ -98,6 +102,10 @@ public final class GlState {
         glGetIntegerv(GL_VIEWPORT, lastViewport);
         glGetIntegerv(GL_SCISSOR_BOX, lastScissorBox);
     }
+
+    /**
+     * 还原GL状态
+     */
 
     public static void restore() {
         glUseProgram(lastProgram);

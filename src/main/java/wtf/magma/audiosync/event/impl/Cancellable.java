@@ -1,4 +1,4 @@
-package wtf.arsenic.event.impl;
+package wtf.magma.audiosync.event.impl;
 
 /**
  * An interface for objects that can be cancelled.

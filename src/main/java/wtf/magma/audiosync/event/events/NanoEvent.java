@@ -1,6 +1,6 @@
-package wtf.arsenic.event.events;
+package wtf.magma.audiosync.event.events;
 
-import wtf.arsenic.event.impl.Event;
+import wtf.magma.audiosync.event.impl.Event;
 
 public class NanoEvent implements Event {
 }

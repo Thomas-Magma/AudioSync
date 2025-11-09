@@ -1,0 +1,17 @@
+{
+  "client.config.screen": "Config",
+  "client.music.cover": "Display Song Cover",
+  "client.music.cover.description": "Display your song cover from SMTC",
+  "client.music.title": "Display Song Title",
+  "client.music.title.description": "Display your song title",
+  "client.music.time": "Display Music Play Time",
+  "client.music.time.description": "Display the current playback duration of the music",
+  "client.music.singer": "Display Singer",
+  "client.music.singer.description": "Display the name of the song's singer",
+  "client.position.name": "Position",
+  "client.position.description": "Change display position",
+  "client.position.top_left": "Top Left",
+  "client.position.bottom_right": "Bottom Right",
+  "client.position.top_right": "Top Right",
+  "client.position.bottom_left": "Bottom Left"
+}

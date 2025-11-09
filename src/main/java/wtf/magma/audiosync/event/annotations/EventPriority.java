@@ -1,4 +1,4 @@
-package wtf.arsenic.event.annotations;
+package wtf.magma.audiosync.event.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package wtf.arsenic.event.impl;
+package wtf.magma.audiosync.event.impl;
 
 /**
  * An abstract class for cancellable events.
