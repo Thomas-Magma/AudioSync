@@ -31,9 +31,11 @@ public final class ModClientConfig {
     public static boolean renderTitle = true;
     @SerialEntry
     public static boolean renderTime = true;
-
     @SerialEntry
     public static Position position = Position.Top_left;
+    @SerialEntry
+    public static boolean round = true;
+
 
     public static Screen makeScreen(Screen parent) {
         return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> builder
@@ -95,6 +97,18 @@ public final class ModClientConfig {
                                         .controller(opt -> EnumControllerBuilder.create(opt)
                                                 .enumClass(Position.class)
                                                 .valueFormatter(v -> Text.translatable("client.position." + v.name().toLowerCase())))
+                                        .build())
+                                .option(Option.<Boolean>createBuilder()
+                                        .name(Text.translatable("client.music.round"))
+                                        .description(OptionDescription.of(Text.translatable("client.music.round.description")))
+                                        .binding(
+                                                true,
+                                                () -> round,
+                                                value -> round = value
+                                        )
+                                        .controller(opt -> BooleanControllerBuilder.create(opt)
+                                                .valueFormatter(val -> Text.literal(val ? "ON": "OFF"))
+                                                .coloured(true))
                                         .build())
                                 .build()))
                 .generateScreen(parent);

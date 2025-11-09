@@ -1,0 +1,19 @@
+{
+  "client.config.screen": "配置",
+  "client.music.cover": "显示歌曲封面",
+  "client.music.cover.description": "显示来自SMTC的歌曲封面",
+  "client.music.title": "显示歌曲标题",
+  "client.music.title.description": "显示歌曲标题",
+  "client.music.time": "显示音乐播放时间",
+  "client.music.time.description": "显示音乐的当前播放时长",
+  "client.music.singer": "显示歌手",
+  "client.music.singer.description": "显示歌曲的歌手名称",
+  "client.position.name": "位置",
+  "client.position.description": "更改显示位置",
+  "client.position.top_left": "左上角",
+  "client.position.bottom_right": "右下角",
+  "client.position.top_right": "右上角",
+  "client.position.bottom_left": "左下角",
+  "client.music.round": "封面圆角",
+  "client.music.round.description": "将封面显示为圆角矩形"
+}

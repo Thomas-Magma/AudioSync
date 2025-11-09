@@ -104,6 +104,7 @@ public class Base64ImageRenderer {
         }
     }
 
+
     /**
      * 渲染图像到指定圆角矩形区域
      */

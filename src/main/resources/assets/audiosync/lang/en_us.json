@@ -13,5 +13,7 @@
   "client.position.top_left": "Top Left",
   "client.position.bottom_right": "Bottom Right",
   "client.position.top_right": "Top Right",
-  "client.position.bottom_left": "Bottom Left"
+  "client.position.bottom_left": "Bottom Left",
+  "client.music.round": "Cover Rounded",
+  "client.music.round.description": "Make the cover display as a rounded rectangle"
 }

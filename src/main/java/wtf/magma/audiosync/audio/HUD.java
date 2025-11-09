@@ -18,6 +18,11 @@ public class HUD {
         AudioSync.Instance.getEventManager().register(this);
     }
 
+    private void drawImage(String base64Data, String cacheKey, float x, float y, float width, float height){
+        if (ModClientConfig.round) Base64ImageRenderer.drawBase64RoundRectImage(base64Data,cacheKey,x,y,width,height,4);
+        else Base64ImageRenderer.drawBase64Image(base64Data,cacheKey,x,y,width,height);
+    }
+
     @EventTarget
     public void on2d(NanoEvent event){
         boolean cover = ModClientConfig.renderCover;
@@ -32,7 +37,7 @@ public class HUD {
                 float fontX = cover ? 70 : 10;
                 float fontY = titleBoolean ? MinecraftClient.getInstance().getWindow().getScaledHeight() - 58 : MinecraftClient.getInstance().getWindow().getScaledHeight() - 68;
 
-                if (cover) Base64ImageRenderer.drawBase64Image(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),10, MinecraftClient.getInstance().getWindow().getScaledHeight() - 70,50,50);
+                if (cover) drawImage(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),10, MinecraftClient.getInstance().getWindow().getScaledHeight() - 70,50,50);
                 if (titleBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getSongName(SMTC.getTitle()),fontX,MinecraftClient.getInstance().getWindow().getScaledHeight() - 68, Color.WHITE);
                 if (singerBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getArtist(SMTC.getTitle()),fontX,fontY, Color.WHITE);
 
@@ -46,7 +51,7 @@ public class HUD {
                 float fontX = cover ? 70 : 10;
                 float fontY = titleBoolean ? 22: 12;
 
-                if (cover) Base64ImageRenderer.drawBase64RoundRectImage(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),10, 10,50,50,4);
+                if (cover) drawImage(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),10, 10,50,50);
                 if (titleBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getSongName(SMTC.getTitle()),fontX,12, Color.WHITE);
                 if (singerBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getArtist(SMTC.getTitle()),fontX,fontY, Color.WHITE);
 
@@ -68,7 +73,7 @@ public class HUD {
 
                 float fontY = titleBoolean ? 22: 12;
 
-                if (cover) Base64ImageRenderer.drawBase64Image(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),width - 60, 10,50,50);
+                if (cover) drawImage(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),width - 60, 10,50,50);
                 if (titleBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getSongName(SMTC.getTitle()),titleFontX,12, Color.WHITE);
                 if (singerBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getArtist(SMTC.getTitle()),singerFontX,fontY, Color.WHITE);
 
@@ -88,7 +93,7 @@ public class HUD {
 
                 float fontY = titleBoolean ? MinecraftClient.getInstance().getWindow().getScaledHeight() - 58 : MinecraftClient.getInstance().getWindow().getScaledHeight() - 68;
 
-                if (cover) Base64ImageRenderer.drawBase64Image(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),width - 60, MinecraftClient.getInstance().getWindow().getScaledHeight() - 68,50,50);
+                if (cover) drawImage(SMTC.getBase64(),String.valueOf(SMTC.getBase64().length()),width - 60, MinecraftClient.getInstance().getWindow().getScaledHeight() - 68,50,50);
                 if (titleBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getSongName(SMTC.getTitle()),titleFontX,MinecraftClient.getInstance().getWindow().getScaledHeight() - 68, Color.WHITE);
                 if (singerBoolean) NanoFontLoader.Misans_Regular.drawGlowString(TitleParser.getArtist(SMTC.getTitle()),singerFontX,fontY, Color.WHITE);
 
