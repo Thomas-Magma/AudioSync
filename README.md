@@ -6,7 +6,7 @@
 这是一个创新的 Minecraft 模组 通过 Windows SMTC 实时读取系统媒体播放信息 并在游戏内显示当前播放的音乐信息
 
 ## 效果
-![image](https://github.com/Thomas-Magma/AudioSync/blob/master/images/img.pnghttps://github.com/Thomas-Magma/AudioSync/blob/master/images/img.png)
+![image](https://github.com/Thomas-Magma/AudioSync/blob/master/images/img.png)
 ## 功能
 
 ### 媒体信息获取
